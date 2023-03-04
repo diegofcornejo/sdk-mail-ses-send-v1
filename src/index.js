@@ -22,7 +22,7 @@ exports.handler = async (event) => {
             mail.text = await template.generateText(mail.data);
         } catch (error) {
             console.error('ERROR:', error);
-            return done(500, error);
+            return done(500, error.code);
         }
     }
 
@@ -55,8 +55,6 @@ exports.handler = async (event) => {
         // SourceArn: ""
     };
 
-    // let res;
-
     try {
         const send = await ses.sendEmail(params).promise();
         console.info('SUCCESS:', send);
@@ -65,5 +63,4 @@ exports.handler = async (event) => {
         console.error('ERROR:', error);
         return done(500, error);
     }
-    // return res;
 };

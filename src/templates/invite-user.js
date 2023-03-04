@@ -41,11 +41,11 @@ const generateHtml = async (data) => {
               <table style="text-align:center;margin-top:26px;margin-bottom:26px" align="center" border="0" cellPadding="0" cellSpacing="0" role="presentation" width="100%">
                 <tbody>
                   <tr>
-                    <td><a href="${link}" target="_blank" style="background-color:#000;border-radius:5px;color:#fff;font-size:12px;font-weight:500;line-height:100%;text-decoration:none;text-align:center;p-x:20px;p-y:12px;display:inline-block;max-width:100%;padding:12px 20px"><span><!--[if mso]><i style="letter-spacing: 20px;mso-font-width:-100%;mso-text-raise:18" hidden>&nbsp;</i><![endif]--></span><span style="background-color:#000;border-radius:5px;color:#fff;font-size:12px;font-weight:500;line-height:120%;text-decoration:none;text-align:center;p-x:20px;p-y:12px;max-width:100%;display:inline-block;text-transform:none;mso-padding-alt:0px;mso-text-raise:9px">Join the team</span><span><!--[if mso]><i style="letter-spacing: 20px;mso-font-width:-100%" hidden>&nbsp;</i><![endif]--></span></a></td>
+                    <td><a href="${data.link}" target="_blank" style="background-color:#000;border-radius:5px;color:#fff;font-size:12px;font-weight:500;line-height:100%;text-decoration:none;text-align:center;p-x:20px;p-y:12px;display:inline-block;max-width:100%;padding:12px 20px"><span><!--[if mso]><i style="letter-spacing: 20px;mso-font-width:-100%;mso-text-raise:18" hidden>&nbsp;</i><![endif]--></span><span style="background-color:#000;border-radius:5px;color:#fff;font-size:12px;font-weight:500;line-height:120%;text-decoration:none;text-align:center;p-x:20px;p-y:12px;max-width:100%;display:inline-block;text-transform:none;mso-padding-alt:0px;mso-text-raise:9px">Join the team</span><span><!--[if mso]><i style="letter-spacing: 20px;mso-font-width:-100%" hidden>&nbsp;</i><![endif]--></span></a></td>
                   </tr>
                 </tbody>
               </table>
-              <p style="font-size:14px;line-height:24px;margin:16px 0;color:#000">or copy and paste this URL into your browser: <a target="_blank" style="color:#067df7;text-decoration:none" href="${link}" rel="noreferrer">${link}</a></p>
+              <p style="font-size:14px;line-height:24px;margin:16px 0;color:#000">or copy and paste this URL into your browser: <a target="_blank" style="color:#067df7;text-decoration:none" href="${data.link}" rel="noreferrer">${data.link}</a></p>
               <hr style="width:100%;border:none;border-top:1px solid #eaeaea;margin:26px 0" />
               <p style="font-size:12px;line-height:24px;margin:16px 0;color:#666666">This invitation was intended for <span style="color:black">zenorocha </span>.This invite was sent from <span style="color:black">204.13.186.218</span> located in <span style="color:black">São Paulo, Brazil</span>. If you were not expecting this invitation, you can ignore this email. If you are concerned about your account&#x27;s safety, please reply to this email to get in touch with us.</p>
             </td>
@@ -68,10 +68,10 @@ const generateText = (data) => {
     
     
     
-    Join the team [${link}]
+    Join the team [${data.link}]
     
     or copy and paste this URL into your browser:
-    ${link} [${link}]
+    ${data.link} [${data.link}]
     
     --------------------------------------------------------------------------------
     
