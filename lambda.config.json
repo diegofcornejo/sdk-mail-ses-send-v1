@@ -1,7 +1,7 @@
 {
     "FunctionName": "sdk-mail-ses-send-v1",
     "Description": "Send email via AWS SES",
-    "Role":"GithubActionsRole",
+    "Role":"LambdaFullAccessRole",
     "Handler":"index.handler",
     "Runtime":"nodejs16.x",
     "Timeout": 3,
