@@ -16,19 +16,16 @@ exports.handler = async (event) => {
     const mail = JSON.parse(event.body);
 
     if (mail.template) {
-        console.log('Mail template:', mail.template);
         let modulePath = './templates/' + mail.template;
         try {
             let template = require(modulePath);
-            console.info('TEMPLATE:', template);
             mail.html = template.generateHtml(mail.data);
             mail.text = template.generateText(mail.data);
         } catch (error) {
+            console.error('ERROR:', error);
             if (error instanceof Error && error.message.includes(`Cannot find module '${modulePath}'`)) {
-                console.error('ERROR:', error);
                 return done(404, { message: 'Template not found' });
             } else {
-                console.error('ERROR:', error);
                 return done(500, error.message);
             }
         }
