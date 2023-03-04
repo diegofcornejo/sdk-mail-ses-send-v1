@@ -27,7 +27,7 @@ exports.handler = async (event) => {
         } catch (error) {
             console.error('ERROR:', error);
             if (error.code === 'MODULE_NOT_FOUND') {
-                return done(404, { message: 'Template not found Node' });
+                return done(404, { message: 'Template not found' });
             } else {
                 return done(500, error.message);
             }
