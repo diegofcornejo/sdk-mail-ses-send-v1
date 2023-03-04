@@ -16,7 +16,7 @@ exports.handler = async (event) => {
     const mail = JSON.parse(event.body);
 
     if (mail.template) {
-        let modulePath = `./templates/${mail.template}`;
+        let modulePath = `./templates/${mail.template}.js`;
         try {
             let template = require(`${modulePath}`);
             mail.html = template.generateHtml(mail.data);
