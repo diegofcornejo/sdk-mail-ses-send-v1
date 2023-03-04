@@ -9,7 +9,9 @@ exports.handler = async (event) => {
         console.log('MESSAGE:', message)
         let response = {
             "statusCode": code,
-            "body": JSON.stringify(message)
+            "body": JSON.stringify({
+                "message": message
+            })
         };
         return response;
     };
@@ -23,7 +25,7 @@ exports.handler = async (event) => {
             mail.text = template.generateText(mail.data);
         } catch (error) {
             console.error('ERROR:', error);
-            return done(500, error);
+            return done(500, error.message);
         }
     }
 
