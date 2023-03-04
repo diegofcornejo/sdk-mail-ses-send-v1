@@ -25,7 +25,7 @@ jobs:
           npm ci || npm i
           # npx @vercel/ncc build ./src/index.js
           # zip -j deploy.zip ./dist/*
-          zip -r deploy.zip ./src
+          cd src && zip -r deploy.zip *
           aws lambda update-function-code --function-name `echo $(jq -r '.FunctionName' lambda.config.json)` --zip-file=fileb://deploy.zip 2> deploy.err || true
           echo "::set-output name=error::$(grep -ohw 'deploy.err' -e 'Function not found')"
     outputs:
