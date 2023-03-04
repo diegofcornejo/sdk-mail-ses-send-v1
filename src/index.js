@@ -1,8 +1,59 @@
+const AWS = require('aws-sdk');
+const ses = new AWS.SES({ apiVersion: '2010-12-01' });
+
 exports.handler = async (event) => {
-    // TODO implement
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify('AWS Lambda CI/CD with github actions'),
+
+    console.log('EVENT INFO:', event);
+
+    const done = function(code, message) {
+        let response = {
+            "statusCode": code,
+            "body": JSON.stringify(message)
+        };
+        return response;
     };
-    return response;
+
+    const mail = JSON.parse(event.body);
+
+    let params = {
+        Destination: {
+            BccAddresses: mail.bcc || [],
+            CcAddresses: mail.cc || [],
+            ToAddresses: mail.to || []
+        },
+        Message: {
+            Body: {
+                Html: {
+                    Charset: "UTF-8",
+                    Data: mail.html || ''
+                },
+                Text: {
+                    Charset: "UTF-8",
+                    Data: mail.text || ''
+                }
+            },
+            Subject: {
+                Charset: "UTF-8",
+                Data: mail.subject
+            }
+        },
+        ReplyToAddresses: mail.replyTo || [],
+        // ReturnPath: "",
+        // ReturnPathArn: "",
+        Source: typeof mail.from == 'string' ? mail.from : mail.from.name + ' ' + '<' + mail.from.email + '>',
+        // SourceArn: ""
+    };
+
+    // let res;
+
+    try {
+        const send = await ses.sendEmail(params).promise();
+        console.info('SUCCESS:', send);
+        return done(200, send);
+    }
+    catch (error) {
+        console.error('ERROR:', error);
+        return done(500, error);
+    }
+    // return res;
 };

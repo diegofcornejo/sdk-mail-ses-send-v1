@@ -1,9 +1,9 @@
 {
-    "FunctionName": "lambda-github-actions",
-    "Description": "Lambda CI with github actions",
+    "FunctionName": "sdk-mail-ses-send-v1",
+    "Description": "Send email via AWS SES",
     "Role":"GithubActionsRole",
     "Handler":"index.handler",
-    "Runtime":"nodejs14.x",
+    "Runtime":"nodejs16.x",
     "Timeout": 3,
     "MemorySize": 128
 }
