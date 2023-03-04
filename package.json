@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "invoke": "aws lambda invoke --function-name sdk-mail-ses-send-v1 --payload fileb://./events/example.json response.json",
+    "invoke": "aws lambda invoke --function-name sdk-mail-ses-send-v1 --payload fileb://./events/example.json response.json --profile github-deployer",
     "invoke:local": "sam local invoke -e ./events/example.json LambdaGithubActions"
   },
-  "repository": {
+  "repository": { 
     "type": "git",
     "url": "git+https://github.com/diegofcornejo/sdk-mail-ses-send-v1.git"
   },

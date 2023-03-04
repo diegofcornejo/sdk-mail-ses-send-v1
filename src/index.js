@@ -21,6 +21,7 @@ exports.handler = async (event) => {
             mail.html = await template.generateHtml(mail.data);
             mail.text = await template.generateText(mail.data);
         } catch (error) {
+            console.error('ERROR:', error);
             return done(500, error);
         }
     }
@@ -60,8 +61,7 @@ exports.handler = async (event) => {
         const send = await ses.sendEmail(params).promise();
         console.info('SUCCESS:', send);
         return done(200, send);
-    }
-    catch (error) {
+    } catch (error) {
         console.error('ERROR:', error);
         return done(500, error);
     }
