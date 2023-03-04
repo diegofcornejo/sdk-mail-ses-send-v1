@@ -18,13 +18,16 @@ exports.handler = async (event) => {
     if (mail.template) {
         try {
             let template = require(`./templates/${mail.template}`);
+
+            //THIS LINE HAS BEEN ADDED BECAUSE THE DINAMIC IMPORT IS NOT WORKING WHEN NCC IS USED
             if(!template) return done(404, { message: 'Template not found' });
+
             mail.html = template.generateHtml(mail.data);
             mail.text = template.generateText(mail.data);
         } catch (error) {
             console.error('ERROR:', error);
             if (error.code === 'MODULE_NOT_FOUND') {
-                return done(404, { message: 'Template not found' });
+                return done(404, { message: 'Template not found Node' });
             } else {
                 return done(500, error.message);
             }
