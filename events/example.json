@@ -1,4 +1,9 @@
 {
-	"name":"Diego",
-	"email": "diegof.cornejo@gmail.com"
+    "from": {
+        "name":"PYME GT Name",
+        "email":"noreply@pyme.gt"
+    },
+    "to":["diegof.cornejo@gmail.com"],
+    "subject": "Setup github action",
+    "html":"<h4>Hello from Pyme GT</h4>"
 }

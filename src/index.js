@@ -5,7 +5,7 @@ exports.handler = async (event) => {
 
     console.log('EVENT INFO:', event);
 
-    const done = function(code, message) {
+    const done = function (code, message) {
         let response = {
             "statusCode": code,
             "body": JSON.stringify(message)
@@ -14,6 +14,16 @@ exports.handler = async (event) => {
     };
 
     const mail = JSON.parse(event.body);
+
+    if (mail.template) {
+        try {
+            let template = require('./templates/' + mail.template);
+            mail.html = await template.generateHtml(mail.data);
+            mail.text = await template.generateText(mail.data);
+        } catch (error) {
+            return done(500, error);
+        }
+    }
 
     let params = {
         Destination: {
