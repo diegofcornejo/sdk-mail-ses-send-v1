@@ -22,7 +22,7 @@ exports.handler = async (event) => {
             mail.text = await template.generateText(mail.data);
         } catch (error) {
             console.error('ERROR:', error);
-            return done(500, error.errorMessage);
+            throw error;
         }
     }
 
@@ -61,6 +61,6 @@ exports.handler = async (event) => {
         return done(200, send);
     } catch (error) {
         console.error('ERROR:', error);
-        return done(500, error);
+        throw error;
     }
 };
