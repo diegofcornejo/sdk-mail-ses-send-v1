@@ -17,8 +17,8 @@ exports.handler = async (event) => {
 
     if (mail.template) {
         console.log('Mail template:', mail.template);
+        let modulePath = './templates/' + mail.template;
         try {
-            let modulePath = './templates/' + mail.template;
             let template = require(modulePath);
             console.info('TEMPLATE:', template);
             mail.html = template.generateHtml(mail.data);
