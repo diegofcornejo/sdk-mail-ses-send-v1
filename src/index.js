@@ -19,8 +19,8 @@ exports.handler = async (event) => {
     if (mail.template) {
         try {
             let template = require('./templates/' + mail.template);
-            mail.html = await template.generateHtml(mail.data);
-            mail.text = await template.generateText(mail.data);
+            mail.html = template.generateHtml(mail.data);
+            mail.text = template.generateText(mail.data);
         } catch (error) {
             console.error('ERROR:', error);
             return done(500, error);
