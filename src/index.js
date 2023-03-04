@@ -6,6 +6,7 @@ exports.handler = async (event) => {
     console.log('EVENT INFO:', event);
 
     const done = function (code, message) {
+        console.log('MESSAGE:', message)
         let response = {
             "statusCode": code,
             "body": JSON.stringify(message)
@@ -22,7 +23,7 @@ exports.handler = async (event) => {
             mail.text = await template.generateText(mail.data);
         } catch (error) {
             console.error('ERROR:', error);
-            throw error;
+            return done(500, error);
         }
     }
 
@@ -61,6 +62,6 @@ exports.handler = async (event) => {
         return done(200, send);
     } catch (error) {
         console.error('ERROR:', error);
-        throw error;
+        return done(500, error);
     }
 };
