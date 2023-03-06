@@ -57,10 +57,9 @@ exports.handler = async (event) => {
             }
         },
         ReplyToAddresses: mail.replyTo || [],
-        // ReturnPath: "",
-        // ReturnPathArn: "",
         Source: typeof mail.from == 'string' ? mail.from : mail.from.name + ' ' + '<' + mail.from.email + '>',
-        // SourceArn: ""
+        ConfigurationSetName: mail.configset || 'track-all-events',
+        Tags: mail.tags || []
     };
 
     try {
