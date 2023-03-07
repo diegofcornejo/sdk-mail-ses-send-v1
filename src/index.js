@@ -15,6 +15,14 @@ exports.handler = async (event) => {
 
     const mail = JSON.parse(event.body);
 
+    //TODO: Validate service quota limits
+    //Max recipient is any "To", "CC", or "BCC" address: 50
+
+    //TODO: Add validation for a bulk message
+    //Refactor: Create a function to group recipients in dependency of bulk property
+    //Bulk: true = Send messages in groups of 50 or less - This case if not needed granular info
+    //Bulk: false = Send messages one by one - This case if for manage campaigns when it need a granular event info like: Send, receibe, bound, open, click, etc
+
     if (mail.template) {
         try {
             let template = require(`./templates/${mail.template}`);
@@ -58,9 +66,14 @@ exports.handler = async (event) => {
         },
         ReplyToAddresses: mail.replyTo || [],
         Source: typeof mail.from == 'string' ? mail.from : mail.from.name + ' ' + '<' + mail.from.email + '>',
-        ConfigurationSetName: mail.configset || 'track-all-events',
+        // ConfigurationSetName: mail.configset || 'track-all-events',
         Tags: mail.tags || []
     };
+
+    //Validate if the request has configuration set
+    if(mail.configset){
+        params.ConfigurationSetName = mail.configset
+    }
 
     try {
         const send = await ses.sendEmail(params).promise();
